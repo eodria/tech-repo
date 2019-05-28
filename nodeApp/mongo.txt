@@ -1,0 +1,6 @@
+My page text and contents are stored within a Mongo database connected to my back-end server. MongoDB is an extremely popular NoSQL database program which uses JSON-like documents to store represent data. MongoDB is also what I use at Esurance to store customer payment information in the Digital Wallet application. MongoDB has several benefits over SQL datase programs:
+Data is stored in JSON-like format which is a popular choice of data representation.
+MongoDB is incredibly easy to scale for businesses; MongoDB supports horizontal scaling for heavy workloads.
+MongoDB does not impose a strict schema in comparison to SQL database programs which is often more realistic. This gives engineers greater flexibility as to what they can store in a collection.
+MongoDB is appropriate for: Big Data and User Data Management.
+Click here for further documentation

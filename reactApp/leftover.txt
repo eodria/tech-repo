@@ -1,0 +1,133 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './siteStyle.css';
+import $ from 'jquery';
+import MatchInfo from './MatchInfo.js';
+import Modal from 'react-bootstrap';
+
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      matches: [ ],
+      searchToken: '',
+      matchSentence: '',
+      show: false
+    };
+    this.searchHandler = this.searchHandler.bind(this);
+    this.tokenHandler = this.tokenHandler.bind(this);
+    this.redirectionHandler = props.redirectionHandler.bind(this);
+  }
+  handleClose() {
+    this.setState({ show: false });
+  }
+  handleShow() {
+    this.setState({ show: true });
+  }
+  searchHandler() {
+    console.log('Initializing search for token... ');
+    //fetch('http://52.52.115.98:8081/search', {
+    fetch('http://localhost:8081/search', {
+      body: JSON.stringify(this.state),
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST',
+      mode: 'cors',
+      redirect: 'follow',
+      referrer: 'no-referrer'
+    })
+    .then(function(response) {
+      console.log(response);
+      var myJson = response.json();
+      return myJson;
+    })
+    .then(myJson => {
+      this.setState({ matches : myJson });
+      console.log(myJson);
+      $('#matches').html(myJson.length + ' matches found: ');
+    });
+  }
+  tokenHandler(e) {
+    this.setState({searchToken: event.target.value});
+  }
+  render() {
+    var text = "Matches found: " + this.state.matches.length;
+    var listItems = this.state.matches.map((d) => <li class="match-item"><a class="matchHeader" onClick = {() => this.redirectionHandler(d.title)}>{d.title}</a><br/>{d.sentence}</li>);
+  
+    return (
+        <div>
+
+        <nav name="header" class="navbar navbar-expand-lg navbar-light bg-light">
+              <a name="home" class="navbar-brand" href="/">Home</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul name="navigate" class="navbar-nav mr-auto" id="nav-list">
+                  <li name="nested" class="nav-item active">
+                    <a class="nav-link" href="stack.html">About</a>
+                  </li>
+                  <li name="nested" class="nav-item active">
+                    <a class="nav-link" href="resume.html">Resume<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li name="nested" class="nav-item active">
+                    <a class="nav-link" href="https://www.chegg.com/tutors/online-tutors/Estevon-O-543280/">Chegg Tutors</a>
+                  </li>
+                  <li name="nested" class="nav-item active">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                  </li>
+                  <li name="nested" name="search" class="nav-item active">
+                    <span name="search">
+                    <button name="search" type="button" data-toggle="modal" data-target="#myModal">
+                      <a name="search" class="nav-link" href="#">Search</a>
+                    </button>
+                    <i class="fa fa-search"></i>
+                    
+                    <div class="modal" id="myModal">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title">Search website</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          
+                          <div class="modal-body">
+                            
+                            <div name="query" class="form-group">
+                          
+                            <input onChange={this.tokenHandler} id="search-box" class="form-control" aria-describedby="nameHelp" placeholder="Enter search token">
+                            </input>
+
+                            {<MatchInfo render={this.state.matches.length > 0} text={text} /> }
+                            
+                            {listItems}
+
+                          </div>
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="button" name="close" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button onClick={this.searchHandler} name="submit" type="button" class="btn btn-success">Query</button>
+                          </div>
+
+                        </div>
+                      </div>
+                    
+                    </div>
+                    
+                    </span>
+                  </li>
+                </ul>
+              </div>
+        </nav>
+
+      </div>
+    );
+  }
+}
+export default Navbar;

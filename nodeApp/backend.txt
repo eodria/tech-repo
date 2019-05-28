@@ -1,0 +1,7 @@
+I connected my front-end server to the back-end server of my web application. This back-end server is responsible for many things such as: 
+Captcha verification requests (proving you are not a robot =] ) 
+Email and phone number validation on Contact page
+Email functionality
+Serving all the pages and content to the client (i.e. you)
+Website search functionality
+Database management
