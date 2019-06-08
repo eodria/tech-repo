@@ -1,4 +1,0 @@
-reCAPTCHA is an API developed by Google. It is designed to prevent websites from spam and abuse. I have integrated reCAPTCHA into my website for two purposes.
-1. To censor my email from robots to prevent potential abuse
-2. To prevent abuse of automated email on Contact page from evil people.
-Click here for further documentation

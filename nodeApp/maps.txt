@@ -1,1 +1,0 @@
-Google offers a Google Maps software library which most of certainly use today. I integrated Google Maps on my Resume page to offer a visualization of where I have worked and studied. Several uses for Google Maps include looking up directions, geolocation and much more. Click here for further documentation

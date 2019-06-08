@@ -1,1 +1,0 @@
-The front-end server is the component with which the client (i.e. you) directly communicate with. The front-end server forwards all requests to the back-end server and then forwards the response back to you. This is how the majority of web applications are created. This ensures equal load balancing and enhanced efficiency/throughput.

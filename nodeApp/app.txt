@@ -1,3 +1,0 @@
-My name is Estevon Odria. I'm a full-time software engineer in San Francisco. I am currently interested in distributed systems and cloud computing. I've had the pleasure of working with several companies to deliver great technology. My hobbies include: anime, videogames, music, investment, software design and running. Check out this website I coded from scratch. If you have inquiries, want a full version of my resume instantly emailed to you or want to chat with me about life, go to the 'Contact' section.
-
-link: http://localhost:8080
